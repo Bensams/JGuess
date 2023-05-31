@@ -182,6 +182,7 @@ public class game extends javax.swing.JFrame {
     public int temp;
     public  int attempt = temp;
     
+    
     private void jPanel1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPanel1KeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_jPanel1KeyPressed
@@ -194,14 +195,39 @@ public class game extends javax.swing.JFrame {
 
     private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
         // TODO add your handling code here:
+        int near = 5;
+        int nearest = 3;
+        int diff;
+        int absDiff;
+        
         if (evt.getKeyCode() ==  KeyEvent.VK_ENTER) {
-            
             
          String userInput = jTextField1.getText();
            jButton2.setVisible(false);
-        if ("hesoyam".equals(userInput))
+        if ("reveal".equals(userInput))
             jLabel5.setText( "reveal: " + randomNumber);
-         if (randomNumber == Integer.parseInt(userInput)) {
+
+         diff = randomNumber - Integer.parseInt(userInput);
+         absDiff = Math.abs(diff);
+         if (Integer.parseInt(userInput) < 0 || Integer.parseInt(userInput) > limit) {
+            attempt += 1;
+            jLabel5.setText("Enter 0 to " + limit + " only: ");
+            } else if (absDiff <= near){
+                jLabel5.setText("<html><center>The number " + userInput + " you guessed is <br> near the correct number </center></html>");
+            } else if (randomNumber > Integer.parseInt(userInput)){  
+               jLabel5.setText("<html><center>The number " + userInput + " you guessed is <br> lower than the correct number </center></html>");
+            } else if(randomNumber < Integer.parseInt(userInput)) {
+                jLabel5.setText("<html><center>The number " + userInput + " you guessed is <br> higher than the correct number </center></html> ");
+            }
+         if (absDiff < nearest) {
+                jLabel5.setText("<html><center>The number " + userInput + " you guessed is <br> closest the correct number </center></html>");
+            }
+         
+         if (randomNumber > Integer.parseInt(userInput) || randomNumber < Integer.parseInt(userInput)) {
+          attempt -= 1;
+           jLabel3.setText("Attempts: " + attempt);
+            } 
+        if (randomNumber == Integer.parseInt(userInput)) {
              try {
                  ++winner;
                 obj.Save(winner);
@@ -213,25 +239,13 @@ public class game extends javax.swing.JFrame {
                     e.printStackTrace();
                     }
              jTextField1.setEnabled(false);
+             jLabel5.setText("");
              jLabel4.setText("You Are The Winner!");
              jLabel6.setText("" + randomNumber);
              jButton1.setVisible(true);
              jButton2.setVisible(true);
             } 
-         
-         if (Integer.parseInt(userInput) < 0 || Integer.parseInt(userInput) > limit) {
-            attempt += 1;
-            jLabel5.setText("Enter 0 to " + limit + " only: ");
-            } else if (randomNumber > Integer.parseInt(userInput)){  
-               jLabel5.setText("<html>The number " + userInput + " you guessed is <br> lower than the lucky number </html>");
-            } else if(randomNumber < Integer.parseInt(userInput)) {
-                jLabel5.setText("<html>The number " + userInput + " you guessed is <br> higher than the lucky number </html> ");
-            }  
-         if (randomNumber > Integer.parseInt(userInput) || randomNumber < Integer.parseInt(userInput)) {
-          attempt -= 1;
-           jLabel3.setText("Attempts: " + attempt);
-//                To change Attemp here...
-        } if (attempt == 0) {
+         if (attempt == 0) {
             jLabel3.setText("Attempt: " + attempt);
              jLabel4.setText("You Have Failed!");
              jLabel6.setText("" + randomNumber);

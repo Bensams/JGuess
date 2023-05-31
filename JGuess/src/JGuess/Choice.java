@@ -61,7 +61,7 @@ public class Choice extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(51, 102, 255));
         jButton1.setFont(new java.awt.Font("Segoe UI Black", 1, 48)); // NOI18N
         jButton1.setForeground(new java.awt.Color(204, 204, 0));
-        jButton1.setText("Moderate (300)");
+        jButton1.setText("Average (300)");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -110,7 +110,7 @@ public class Choice extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     Random ran = new Random();
     public int Seed(int limit) {
-        return ran.nextInt(limit);
+        return ran.nextInt(limit) + 1;
     }
 
 // moderate button
@@ -121,7 +121,7 @@ public class Choice extends javax.swing.JFrame {
         int limit = 300;
         JOptionPane.showMessageDialog(null, "You only have 5 attempts to guess the right number.");
         game obj = new game();
-        obj.setTitle("Moderate");
+        obj.setTitle("Average");
         obj.setVisible(true);
         obj.randomNumber = Seed(limit);
         obj.attempt = attempt;
