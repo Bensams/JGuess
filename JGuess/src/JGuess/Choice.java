@@ -116,10 +116,12 @@ public class Choice extends javax.swing.JFrame {
 // moderate button
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        int attempt = 6;
+        
+        int attempt = 5;
         int limit = 300;
-        JOptionPane.showMessageDialog(null, "You only have 6 attempts to guess the right number.");
+        JOptionPane.showMessageDialog(null, "You only have 5 attempts to guess the right number.");
         game obj = new game();
+        obj.setTitle("Moderate");
         obj.setVisible(true);
         obj.randomNumber = Seed(limit);
         obj.attempt = attempt;
@@ -130,10 +132,11 @@ public class Choice extends javax.swing.JFrame {
 // easy button
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        int attempt = 4;
+        int attempt = 5;
         int limit = 100;
-        JOptionPane.showMessageDialog(null, "You only have 4 attempts to guess the right number.");
+        JOptionPane.showMessageDialog(null, "You only have 5 attempts to guess the right number.");
         game obj = new game();
+        obj.setTitle("Easy");
         obj.setVisible(true);
         obj.randomNumber = Seed(limit);
         obj.attempt = attempt;
@@ -152,10 +155,11 @@ public class Choice extends javax.swing.JFrame {
 // difficult button
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        int attempt = 8;
+        int attempt = 5;
         int limit = 500;
-        JOptionPane.showMessageDialog(null, "You only have 8 attempts to guess the right number.");
+        JOptionPane.showMessageDialog(null, "You only have 5 attempts to guess the right number.");
         game obj = new game();
+        obj.setTitle("Difficult");
         obj.setVisible(true);
         obj.setVisible(true);
         obj.randomNumber = Seed(limit);

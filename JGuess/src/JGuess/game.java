@@ -175,7 +175,7 @@ public class game extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     Main obj = new Main();
-    public int winner = 0;
+    public int winner;
     
     public int limit;
     public  int randomNumber;
@@ -195,13 +195,15 @@ public class game extends javax.swing.JFrame {
     private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
         // TODO add your handling code here:
         if (evt.getKeyCode() ==  KeyEvent.VK_ENTER) {
-//         jLabel5.setText( "reveal: " + randomNumber);
+            
+            
          String userInput = jTextField1.getText();
            jButton2.setVisible(false);
-        
+        if ("hesoyam".equals(userInput))
+            jLabel5.setText( "reveal: " + randomNumber);
          if (randomNumber == Integer.parseInt(userInput)) {
-             ++winner;
              try {
+                 ++winner;
                 obj.Save(winner);
                 if (winner > 1)
                     jLabel7.setText("Winners: " + winner);
@@ -213,7 +215,6 @@ public class game extends javax.swing.JFrame {
              jTextField1.setEnabled(false);
              jLabel4.setText("You Are The Winner!");
              jLabel6.setText("" + randomNumber);
-             jLabel5.setText("eyyy");
              jButton1.setVisible(true);
              jButton2.setVisible(true);
             } 
@@ -222,10 +223,11 @@ public class game extends javax.swing.JFrame {
             attempt += 1;
             jLabel5.setText("Enter 0 to " + limit + " only: ");
             } else if (randomNumber > Integer.parseInt(userInput)){  
-               jLabel5.setText("<html>The number you guessed is <br> lower than the lucky number </html>");
+               jLabel5.setText("<html>The number " + userInput + " you guessed is <br> lower than the lucky number </html>");
             } else if(randomNumber < Integer.parseInt(userInput)) {
-                jLabel5.setText("<html>The number you guessed is <br> higher than the lucky number </html> ");
-            }  if (randomNumber > Integer.parseInt(userInput) || randomNumber < Integer.parseInt(userInput)) {
+                jLabel5.setText("<html>The number " + userInput + " you guessed is <br> higher than the lucky number </html> ");
+            }  
+         if (randomNumber > Integer.parseInt(userInput) || randomNumber < Integer.parseInt(userInput)) {
           attempt -= 1;
            jLabel3.setText("Attempts: " + attempt);
 //                To change Attemp here...

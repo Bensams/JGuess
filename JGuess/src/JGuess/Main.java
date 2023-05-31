@@ -19,7 +19,7 @@ import java.io.PrintWriter;
  * @author Bensam
  */
 public class Main extends javax.swing.JFrame {
-    Image icon = Toolkit.getDefaultToolkit().getImage("src\\jguessLogo.png");
+    Image icon = Toolkit.getDefaultToolkit().getImage("dist\\jguessLogo.png");
     
     public Main() {
     setIconImage(icon);
@@ -172,19 +172,18 @@ public class Main extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    private File cFile = new File("Winner.txt");
+    
     int winner = 0;
     
     public void Save(int data) throws IOException{
-        File cFile = new File("Winner.txt");
         PrintWriter save = new PrintWriter(new FileWriter("Winner.txt"));
         save.println(data);
         save.close();
     }
     public int Load() throws IOException {
         BufferedReader load = new BufferedReader(new FileReader("Winner.txt"));
-        int data = 0;
-        data = Integer.parseInt(load.readLine());
+        int data = Integer.parseInt(load.readLine());
         load.close();
         return data;
     }
@@ -197,12 +196,23 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+
         try {
-        winner = Load();
+        if (!cFile.exists()){
+            cFile.createNewFile();
+            Save(0);
+            winner = Load();
         if (winner > 1)
             jLabel6.setText("Winners: " + winner);
         else 
             jLabel6.setText("Winner: " + winner);
+        } else {
+            winner = Load();
+        if (winner > 1)
+            jLabel6.setText("Winners: " + winner);
+        else 
+            jLabel6.setText("Winner: " + winner);
+        }
         } catch (IOException e) {
             e.printStackTrace();
         }
